@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Gul Aftab & Asifa</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #c59b27;
+            --gold-light: #f3e5ab;
+            --gold-dark: #8c6d18;
+            --bg-cream: #faf6f0;
+            --text-dark: #3a2e2b;
+            --maroon: #581825;
+            --card-bg: rgba(255, 255, 255, 0.88);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Ambient Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(250,246,240,1) 80%),
+                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%3Cc59b27' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        /* --- ENVELOPE / VELVET CURTAIN OPENING OVERLAY --- */
+        #opening-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .curtain-left, .curtain-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #3d0f19 0px,
+                #581825 25px,
+                #722030 50px,
+                #581825 75px
+            );
+            transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.6), 0 0 25px rgba(0,0,0,0.5);
+            z-index: 9999;
+        }
+
+        .curtain-left { 
+            left: 0; 
+            border-right: 3px solid var(--gold); 
+        }
+        .curtain-right { 
+            right: 0; 
+            border-left: 3px solid var(--gold); 
+        }
+
+        .envelope-card {
+            position: relative;
+            z-index: 10000;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            user-select: none;
+        }
+
+        .envelope-card:hover {
+            transform: scale(1.08);
+        }
+
+        .wax-seal {
+            width: 115px;
+            height: 115px;
+            background: radial-gradient(circle, #f3e5ab, #c59b27, #8c6d18);
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #fff3d1;
+            animation: pulse 2s infinite, glow 3s infinite alternate;
+        }
+
+        .wax-seal span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.3rem;
+            color: #fff;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .tap-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* --- OPEN STATE ANIMATIONS --- */
+        #opening-overlay.open {
+            pointer-events: none;
+        }
+
+        #opening-overlay.open .curtain-left {
+            transform: translateX(-100%);
+        }
+
+        #opening-overlay.open .curtain-right {
+            transform: translateX(100%);
+        }
+
+        #opening-overlay.open .envelope-card {
+            opacity: 0;
+            transform: scale(0.6);
+            pointer-events: none;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            position: relative;
+        }
+
+        /* --- ISLAMIC ARCH FRAME --- */
+        .arch-card {
+            background: var(--card-bg);
+            border-radius: 180px 180px 20px 20px;
+            border: 2px solid var(--gold);
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .arch-card::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(197, 155, 39, 0.4);
+            border-radius: 175px 175px 15px 15px;
+            pointer-events: none;
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--gold-dark);
+            margin-bottom: 10px;
+        }
+
+        .header-subtext {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .blessing-box {
+            font-size: 0.82rem;
+            color: #555;
+            margin: 15px 0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .host-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--maroon);
+            margin-top: 15px;
+        }
+
+        .couple-names {
+            margin: 25px 0;
+        }
+
+        .name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--gold-dark);
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+            line-height: 1.1;
+        }
+
+        .parent-info {
+            font-size: 0.78rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .weds-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: var(--maroon);
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        /* --- COUNTDOWN TIMER SECTION --- */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .date-cards {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .date-box {
+            background: linear-gradient(145deg, #ffffff, #f7f1e5);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 10px;
+            min-width: 75px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            transition: transform 0.3s;
+        }
+
+        .date-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(197, 155, 39, 0.2);
+        }
+
+        .date-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+
+        .date-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        /* --- EVENT DETAILS --- */
+        .event-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+
+        .event-header {
+            background: var(--maroon);
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .event-date {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .event-sub {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .venue-title {
+            font-weight: 700;
+            color: var(--maroon);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .venue-address {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.5;
+            margin: 8px 0 15px 0;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(197, 155, 39, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- CONTACT BADGES --- */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .contact-chip {
+            background: #f0e6d8;
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-chip i {
+            color: var(--maroon);
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 25px;
+            padding-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* --- FLOATING AUDIO CONTROLLER --- */
+        .audio-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            border: 2px solid #fff;
+        }
+
+        /* Keyframes */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 15px rgba(197, 155, 39, 0.4); }
+            100% { box-shadow: 0 0 35px rgba(197, 155, 39, 0.9); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <!-- BACKGROUND AUDIO -->
+    <audio id="wedding-audio" loop preload="auto">
+        <source src="wedding-song.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="audio-btn" id="audio-toggle" onclick="toggleAudio()">
+        <i class="fa-solid fa-music"></i>
+    </div>
+
+    <!-- ENVELOPE / VELVET CURTAIN OVERLAY -->
+    <div id="opening-overlay">
+        <div class="curtain-left"></div>
+        <div class="curtain-right"></div>
+        <div class="envelope-card" onclick="openInvitation()">
+            <div class="wax-seal">
+                <span>G & A</span>
+            </div>
+            <div class="tap-text">Tap to Open</div>
+        </div>
+    </div>
+
+    <!-- INVITATION MAIN CONTENT -->
+    <div class="container">
+
+        <!-- ARCH MAIN CARD -->
+        <div class="arch-card">
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="header-subtext">In the name of "ALLAH" the most beneficient & the most merciful</div>
+
+            <div class="blessing-box">
+                "Allah guide this marriage with the blessing, shower the couples with Happiness, Love, Wealth, Understanding, Wisdom and Long life."
+            </div>
+
+            <div class="host-title">Mrs. & Mr. Yusuf Shaikh</div>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 4px;">solicit your gracious presence on the occasion of the Dawate-e-Walima of their Loving Son</p>
+
+            <div class="couple-names">
+                <div class="name">Gul Aftab Shaikh</div>
+                <div class="parent-info">( S/o. Mr. Yusuf Ataulla Shaikh )</div>
+
+                <div class="weds-tag">- WEDS -</div>
+
+                <div class="name">Asifa Shaikh</div>
+                <div class="parent-info">( D/o. Mr. Anwar Shaikh )</div>
+            </div>
+
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--maroon); margin-top: 15px;">
+                - Nikah In sha ALLAH -
+            </div>
+            <div style="font-size: 0.8rem; color: #555; margin-top: 4px;">
+                On Thursday, 12th November 2026<br>
+                <small>( 2 Jumada al-Akhirah 1448 Hijri )</small>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN TIMER SECTION -->
+        <div class="section-title">Counting Down</div>
+        <div class="date-cards">
+            <div class="date-box">
+                <div class="date-number" id="days">00</div>
+                <div class="date-label">Days</div>
+            </div>
+            <div class="date-box">
+                <div class="date-number" id="hours">00</div>
+                <div class="date-label">Hours</div>
+            </div>
+            <div class="date-box">
+                <div class="date-number" id="mins">00</div>
+                <div class="date-label">Mins</div>
+            </div>
+            <div class="date-box">
+                <div class="date-number" id="secs">00</div>
+                <div class="date-label">Secs</div>
+            </div>
+        </div>
+
+        <!-- DAWAT-E-WALIMA DETAILS -->
+        <div class="event-card">
+            <div class="event-header">Dawat-e-Walima</div>
+            <div class="event-date">Friday, 13th November 2026</div>
+            <div class="event-sub"><i class="fa-regular fa-clock"></i> Reception & Dinner: 07:00 PM to 11:00 PM</div>
+            
+            <hr style="border: 0; border-top: 1px dashed var(--gold); margin: 15px 0;">
+
+            <div class="venue-title"><i class="fa-solid fa-location-dot"></i> VENUE</div>
+            <div class="venue-address">
+                <strong>GRIH KALYAN KENDRA HALL</strong><br>
+                GRIH KALYAN SAMAJ SADAN COMMUNITY HALL,<br>
+                C.G.S Colony Sector 7, Phase 1, Opp. ACP Office,<br>
+                Shaikh Misri Dargah Road, Antop Hill, Wadala,<br>
+                Mumbai - 400037
+            </div>
+
+            <div class="btn-group">
+                <a href="https://maps.google.com/?q=Grih+Kalyan+Kendra+Hall+Antop+Hill+Wadala+Mumbai" target="_blank" class="btn-action">
+                    <i class="fa-solid fa-map-location-dot"></i> Directions
+                </a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Gul+Aftab+%26+Asifa+Walima&dates=20261113T133000Z/20261113T173000Z&details=Dawat-e-Walima+Reception+%26+Dinner&location=Grih+Kalyan+Kendra+Hall,+Antop+Hill,+Wadala,+Mumbai" target="_blank" class="btn-action">
+                    <i class="fa-solid fa-calendar-plus"></i> Save Date
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div class="event-card">
+            <div style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--maroon); font-weight: 600;">
+                Contact Details
+            </div>
+            <div class="contact-grid">
+                <a href="tel:9323411053" class="contact-chip"><i class="fa-solid fa-phone"></i> Mr. Yusuf: 9323411053</a>
+                <a href="tel:9321780666" class="contact-chip"><i class="fa-solid fa-phone"></i> 9321780666</a>
+                <a href="tel:9322435502" class="contact-chip"><i class="fa-solid fa-phone"></i> Mr. Yunus: 9322435502</a>
+                <a href="tel:9322435509" class="contact-chip"><i class="fa-solid fa-phone"></i> Mr. Yaqub: 9322435509</a>
+                <a href="tel:9619540457" class="contact-chip"><i class="fa-solid fa-phone"></i> Mr. Mohd Ali: 9619540457</a>
+                <a href="tel:8883555782" class="contact-chip"><i class="fa-solid fa-phone"></i> Mr. Aftab: 8883555782</a>
+            </div>
+        </div>
+
+        <!-- COMPLIMENTS -->
+        <div class="footer-note">
+            <strong>With Best Compliments From:</strong><br>
+            FAMILY, FRIENDS & ALL RELATIVES<br>
+            <em>Yusuf Shaikh & Family</em>
+        </div>
+
+    </div>
+
+    <script>
+        // Opening Overlay Logic & Petal Effect Trigger
+        function openInvitation() {
+            const overlay = document.getElementById('opening-overlay');
+            overlay.classList.add('open');
+            
+            // Auto play background music
+            const audio = document.getElementById('wedding-audio');
+            if (audio) {
+                audio.play().catch(e => console.log("Audio playback blocked by browser:", e));
+            }
+
+            // Start falling rose petals
+            setInterval(createPetal, 350);
+
+            // Completely remove overlay after curtain animation finishes (1.4 seconds)
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1400);
+        }
+
+        // Toggle Audio Control
+        function toggleAudio() {
+            const audio = document.getElementById('wedding-audio');
+            const icon = document.querySelector('#audio-toggle i');
+            
+            if (audio.paused) {
+                audio.play();
+                icon.className = 'fa-solid fa-music';
+            } else {
+                audio.pause();
+                icon.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+
+        // Live Countdown Timer
+        const eventDate = new Date("Nov 13, 2026 19:00:00").getTime();
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
+
+        // Petal Creation System
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌸';
+            petal.style.position = 'fixed';
+            petal.style.top = '-20px';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.fontSize = (Math.random() * 10 + 12) + 'px';
+            petal.style.opacity = Math.random() * 0.7 + 0.3;
+            petal.style.pointerEvents = 'none';
+            petal.style.zIndex = '999';
+            petal.style.transition = 'transform 6s linear, opacity 6s linear';
+            
+            document.body.appendChild(petal);
+
+            setTimeout(() => {
+                petal.style.transform = `translateY(105vh) rotate(${Math.random() * 360}deg)`;
+                petal.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => petal.remove(), 6000);
+        }
+    </script>
+</body>
+</html>
